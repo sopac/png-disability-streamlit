@@ -1,0 +1,21 @@
+[project]
+name = "png-streamlit"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "folium>=0.19.4",
+    "geopandas>=1.0.1",
+    "jupyterlab>=4.3.5",
+    "mapclassify>=2.8.1",
+    "matplotlib>=3.10.0",
+    "mercantile>=1.2.1",
+    "openpyxl>=3.1.5",
+    "plotly>=6.0.0",
+    "plotly-express>=0.4.1",
+    "python-lsp-server[all]>=1.12.2",
+    "seaborn>=0.13.2",
+    "streamlit>=1.42.2",
+    "watchdog>=6.0.0",
+]
