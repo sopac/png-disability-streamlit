@@ -4,7 +4,6 @@ import geopandas as gpd
 import plotly.express as px
 
 #data path
-#path = "/Users/sachin/Dropbox/PNG/data/"
 path = "data/"
 #st.set_page_config(layout="wide")
 
@@ -47,6 +46,17 @@ df_province['Province'] = df_province['Province'].str.upper()
 gdf_province.rename(columns={"Prov_Name": "Province"}, inplace=True)
 gdf_province_disability = gdf_province.merge(df_province, on="Province")
 
+#national chart
+df_national.loc[6] = df_national.loc[1:3].sum()
+df_national.loc[6, "Level of difficulty"] = "Disabled Total"
+y = ["Difficulties in seeing", "Difficulties in hearing", "Difficulties in mobility", "Difficulties in memory", "Difficulties in selfcare", "Difficulties in communication"]
+cdf = df_national[y]
+cdf = cdf.iloc[6]
+#st.bar_chart(cdf)
+fig = px.bar(cdf, x=cdf.index, y=cdf.values, color=cdf.index, labels={'x': 'Disability Type', 'y': 'Count'}, title='National Disability Overview')
+st.plotly_chart(fig)
+
+
 # tables
 table = st.selectbox("Select Data : ", ["National Disability", "Disability by Sex", "Disability by Age", "Disability by Area"])
 header = "National Disability Overview"
@@ -65,7 +75,9 @@ if table == "Disability by Area":
     header = "National Disability by Urban or Rural"
 
 
-st.subheader(header)
+#st.subheader(header)
+st.write(header)
+
 st.dataframe(df)
 
 #map
